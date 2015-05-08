@@ -1,11 +1,13 @@
 // tamaño de la base de datos
-const int fi = 102; // numero de filas de la BD
-const int co = 4; // numero de atributos
+// Size of the database to account for the accuracy test
 
-// clases de la base de datos en alfanumerico
+const int fi = 102; // numero de filas de la BD / Number of rows in the database
+const int co = 4; // numero de atributos / Number of attributes
+
+// clases de la base de datos en alfanumerico / Classes alphanumeric database
 char* clasesSt[] = {"Setosa", "Versicolor", "Virginica"};
 
-// atributos: conjunto de entrenamiento
+// atributos: conjunto de entrenamiento / Attributes: training set
 char* nomAtr[]={"Largo sepalo", "Ancho sepalo", "Largo petalo", "Ancho petalo"};
 double atributos[fi][co] = {
 {5.1, 3.5, 1.4, 0.2},

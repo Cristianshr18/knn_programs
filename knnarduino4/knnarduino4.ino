@@ -11,6 +11,7 @@ long actual = 0, previo = 0;
 
 //-----------------------------------------------------------------------
 // Extrae caracteres dados los identificadores y los convierte a double
+// Extract identifiers given characters and converts them to double
 //-----------------------------------------------------------------------
 void extraeDatos(String str, double dato[], char dlm[]){
   
@@ -18,7 +19,7 @@ void extraeDatos(String str, double dato[], char dlm[]){
   int posdlm[5], tamstr = 0;
   int i= 0, j = 0;
   
-  // buscar caracteres de identificacion
+  // buscar caracteres de identificacion  / Identification of characters
   posdlm[0] = str.indexOf(dlm[0]); // (
   posdlm[1] = str.indexOf(dlm[1]); // ,
   posdlm[2] = str.indexOf(dlm[1], posdlm[1] + 1); // ,
@@ -26,12 +27,12 @@ void extraeDatos(String str, double dato[], char dlm[]){
   posdlm[4] = str.indexOf(dlm[2]); // )
     
   for(j=0; j<co; j++){
-    // extraer datos numericos
+    // extraer datos numericos / Extract numerical data
     for(i=posdlm[j]+1; i<posdlm[j+1]; i++){
       auxstr = auxstr + str[i];  
     }
 
-    //convertir a double
+    //convertir a double / Convert to double
     int y = auxstr.length();
     char buf[y+1];
     auxstr.toCharArray(buf, y+1);
@@ -43,7 +44,7 @@ void extraeDatos(String str, double dato[], char dlm[]){
 }
 
 //-----------------------------------------------------------------------
-// Impresion de confirmacion
+// Impresion de confirmacion / Printing confirmation
 //-----------------------------------------------------------------------
 void imprime(double dato[], int clase){
   
@@ -56,7 +57,8 @@ void imprime(double dato[], int clase){
 }
 
 //-----------------------------------------------------------------------
-// Calcula la exactitud del algoritmo KNN dada una k
+// Calcula la exactitud del algoritmo KNN dada una k 
+// Calculate the accuracy of KNN algorithm Given a k
 //-----------------------------------------------------------------------
 double calculaExactitud(int k){
   int i, j, cl;
@@ -69,10 +71,10 @@ double calculaExactitud(int k){
       // extraer un dato de prueba.h
       dato2[j] = atributos2[i][j];
     }  
-    // clasificarlo
+    // clasificarlo / Classify
     cl = clasificaKNN((double*)atributos, clasesNo, dato2, k, fi, co);
     
-    // comparar la clase 
+    // comparar la clase  / Compare class
     if(cl == clasesNo2[i]){
       buenos = buenos + 1;  
     }
@@ -100,6 +102,7 @@ double calculaExactitud(int k){
 
 //-----------------------------------------------------------------------
 // Calcula la k que proporciona mejor exactitud
+// Calculate the k that provides better accuracy
 //-----------------------------------------------------------------------
 void obtieneMejorK(){
   
@@ -107,6 +110,7 @@ void obtieneMejorK(){
   int kTemp = 1, k = 1;  
   
   // calcular todas las exactitudes e ir guardando la mayor  
+  // Calculate all the accuracies and go keeping most
   for(int k=1; k<fi; k++){
     exactitud = calculaExactitud(k); 
     
@@ -123,6 +127,7 @@ void obtieneMejorK(){
 
 //-----------------------------------------------------------------------
 // Configuracion del microcontrolador
+// Setup the microcontroller
 //-----------------------------------------------------------------------
 void setup() {
   Serial.begin(9600);
@@ -149,6 +154,7 @@ void setup() {
 
 //-----------------------------------------------------------------------
 // Programa principal
+// Main program
 //-----------------------------------------------------------------------
 void loop() {
   

@@ -1,11 +1,15 @@
 // tamaño de la base de datos
+// Size of the database to account for the accuracy test
+
 #define FI 100
 #define CO 4
 
 // clases de la base de datos en alfanumerico
+// Classes alphanumeric database
 char* clasesSt[] = {"Setosa", "Versicolor", "Virginica"};
     
 // atributos: conjunto de entrenamiento
+// Attributes: training set
 char* nomAtr[CO]={"Largo sepalo", "Ancho sepalo", "Largo petalo", "Ancho petalo"};
   
 double atributos[FI][CO] = {

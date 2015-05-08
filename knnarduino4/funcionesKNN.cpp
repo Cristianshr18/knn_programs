@@ -1,16 +1,16 @@
-#include <HardwareSerial.h> // solo para Debug
+#include <HardwareSerial.h> // solo para Debug   Debug only
 
-/*------------------------------------------ 
-funciones para el computo del algoritmo KNN
---------------------------------------------*/
+/*-----------------------------------------------------------------------------------------
+funciones para el computo del algoritmo KNN  / functions for the computation algorithm KNN
+-------------------------------------------------------------------------------------------*/
 //#include "dataset.h"
 #include "funcionesKNN.h"
 
 #include <math.h>
 
-/*----------------------------------------------
-calculo de distancia euclidiana entre dos puntos
-------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------------
+calculo de distancia euclidiana entre dos puntos / calculating Euclidean distance between two points
+-----------------------------------------------------------------------------------------------------*/
 double distanciaEuclidiana(double pt1[], double pt2[], int co){  
   int i;
   double suma = 0;
@@ -21,9 +21,9 @@ double distanciaEuclidiana(double pt1[], double pt2[], int co){
 }
 
 
-/*---------------------------------------------------------------
-calculo de distancia euclidiana entre un punto y la base de datos
-----------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------
+calculo de distancia euclidiana entre un punto y la base de datos / calculation of Euclidean distance between a point and the database
+--------------------------------------------------------------------------------------------------------------------------------------*/
 void todasDistEuclid(double pt1[], double aux[], double *atributos, int fi, int co){
   int i = 0, j = 0;
   double pt2[co];
@@ -37,22 +37,22 @@ void todasDistEuclid(double pt1[], double aux[], double *atributos, int fi, int 
   }
 }
 
-/*----------------------------------------------------------------
-Ordenamiento de las distancias de menor a mayor
-----------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------
+Ordenamiento de las distancias de menor a mayor / Sorting distances Ascending
+-----------------------------------------------------------------------------------*/
 void ordena(double datos[], int clases[], int clasesNo[], int fi){
   int i =1, j = 1, f = 1, temp[2];
   
-  //crear una copia de las clases originales
+  //crear una copia de las clases originales  /  Create a copy of the original classes
   for(i=0; i<fi; i++){
     clases[i] = clasesNo[i];  
   }
   
-  // ordenar
+  // ordenar / Order
   for(i=1; (i<=fi)&&f; i++){
     f = 0;
     for(j=0; j<(fi-1); j++){
-      if(datos[j+1] < datos[j]){ // orden descendente >, ascendente <
+      if(datos[j+1] < datos[j]){ // orden descendente >, ascendente <  / // descending order >, ascending order <
         temp[0] = datos[j];    temp[1] = clases[j];
         datos[j] = datos[j+1]; clases[j] = clases[j+1]; 
         datos[j+1] = temp[0];  clases[j+1] = temp[1];
@@ -63,31 +63,29 @@ void ordena(double datos[], int clases[], int clasesNo[], int fi){
 }
 
 /*----------------------------------------------------------------
-Extraer los N primeros
+Extraer los N primeros / Extracting the first N
 ----------------------------------------------------------------*/
-void extraeKPrimeros(double datos[], double kPrimeros[], int clases[], 
-                     int kClases[], int k){
- 
+void extraeKPrimeros(double datos[], double kPrimeros[], int clases[], int kClases[], int k){
   for(int i=0; i<k; i++){
     kPrimeros[i] = datos[i];  
     kClases[i] = clases[i];
   }
 }
 
-/*----------------------------------------------------------------
-Calcula la clase mas frecuente: Moda
-----------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------
+Calcula la clase mas frecuente: Moda / Calculate the most common type: Fashion
+-------------------------------------------------------------------------------*/
 int claseMasFrecuente(int clases[], int k){
   
   int cont = 0, cont2 = 0, pos = 0, num = 0, i = 0;
   int frec[k], mayor = 0, posmayor = 0, aux[k];
   
-  // inicializar el contador de frecuencias
+  // inicializar el contador de frecuencias  /  Initialize the frequency counter
   for(i=0; i<k; i++){
     frec[k] = 0;  
   }
 
-  // comprobar las repeticiones de cada numero
+  // comprobar las repeticiones de cada numero / Check repetitions of each number
   for(cont=0; cont<k; cont++){
     num = clases[cont];
     pos = cont;
@@ -113,9 +111,9 @@ int claseMasFrecuente(int clases[], int k){
 }
 
   
-/*----------------------------------------------------------------
-Calcula la clase de un conjunto de atributos usando KNN
-----------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------
+Calcula la clase de un conjunto de atributos usando KNN / Calculate the class of a set of attributes using KNN
+---------------------------------------------------------------------------------------------------------------*/
 int clasificaKNN(double *datos, int clasesNum[], double dato[], int k, int fi, int co){
   double aux2[fi], kPrimeros[k];
   int clases[fi];
@@ -125,16 +123,16 @@ int clasificaKNN(double *datos, int clasesNum[], double dato[], int k, int fi, i
   ordena(aux2, clases, clasesNum, fi); 
   extraeKPrimeros(aux2, kPrimeros, clases, kClases, k); 
   
-  // calculo de la moda
+  // calculo de la moda / Calculate Fashion
   int cont = 0, cont2 = 0, pos = 0, num = 0, i = 0;
   int frec[k], mayor = 0, posmayor = 0, aux[k];
   
-  // inicializar el contador de frecuencias
+  // inicializar el contador de frecuencias / Initialize the frequency counter
   for(i=0; i<k; i++){
     frec[k] = 0;  
   }
  
-  // comprobar las repeticiones de cada numero
+  // comprobar las repeticiones de cada numero / Check repetitions of each number
   for(cont=0; cont<k; cont++){
     num = clases[cont];
     pos = cont;
